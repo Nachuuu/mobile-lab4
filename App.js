@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Button, Text, View } from 'react-native';
+import MainScreen from "./components/MainScreen";
+import SendEmail from "./components/SendEmail";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="MainScreen">
+        <Stack.Screen name="MainScreen" component={MainScreen}
+        options={{title: 'Lab 4 - Send My Info App'}} />
+        <Stack.Screen name="SendEmail" component={SendEmail} />
+        {/* <Stack.Screen name="SendSMS" component={SendSMS} /> */}
+      </Stack.Navigator>
+    </NavigationContainer> 
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
